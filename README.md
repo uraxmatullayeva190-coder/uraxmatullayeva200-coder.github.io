@@ -1,2 +1,1392 @@
 # uraxmatullayeva200-coder.github.io
 book land
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="WorldBook — Global Book Library. Discover millions of books from around the world. Search by title, author, genre, language and more." />
+  <meta name="theme-color" content="#0a1628" />
+  <title>WORLD BOOK 🌍📚 — One World. Millions of Stories.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            navy: { 950: '#050b14', 900: '#0a1628', 800: '#0f2137', 700: '#16324d', 600: '#1e4466' },
+            gold: { 400: '#e8c47a', 500: '#d4a84b', 600: '#b88a2e', 700: '#8a6a1f' },
+            cream: '#f7f1e8'
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          },
+          boxShadow: {
+            'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+            'card': '0 10px 40px -10px rgba(0,0,0,0.4)',
+            'gold': '0 0 20px rgba(212, 168, 75, 0.3)'
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.6s ease-out forwards',
+            'slide-up': 'slideUp 0.5s ease-out forwards',
+            'float': 'float 6s ease-in-out infinite',
+            'shelf': 'shelf 0.3s ease-out forwards'
+          },
+          keyframes: {
+            fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+            slideUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+            float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
+            shelf: { '0%': { transform: 'translateY(0)' }, '100%': { transform: 'translateY(-12px)' } }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #f7f1e8;
+      --bg-secondary: #ffffff;
+      --text-primary: #0a1628;
+      --text-secondary: #4a5568;
+      --accent: #d4a84b;
+      --card-bg: rgba(255,255,255,0.85);
+      --nav-bg: rgba(255,255,255,0.9);
+    }
+    .dark {
+      --bg-primary: #050b14;
+      --bg-secondary: #0a1628;
+      --text-primary: #f7f1e8;
+      --text-secondary: #a0aec0;
+      --accent: #e8c47a;
+      --card-bg: rgba(15, 33, 55, 0.75);
+      --nav-bg: rgba(10, 22, 40, 0.92);
+    }
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', system-ui, sans-serif;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+    .glass {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .dark .glass {
+      border: 1px solid rgba(232, 196, 122, 0.12);
+    }
+    .nav-glass {
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .book-card {
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    }
+    .book-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.5);
+    }
+    .dark .book-card:hover {
+      box-shadow: 0 20px 50px -10px rgba(212, 168, 75, 0.25);
+    }
+    .shelf-book {
+      transition: transform 0.3s ease, filter 0.3s ease;
+      cursor: pointer;
+    }
+    .shelf-book:hover {
+      transform: translateY(-14px) scale(1.05);
+      filter: brightness(1.15);
+      z-index: 10;
+    }
+    .skeleton {
+      background: linear-gradient(90deg, rgba(255,255,255,0.06) 25%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.06) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+    .dark .skeleton {
+      background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+      background-size: 200% 100%;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .hero-bg {
+      background: radial-gradient(ellipse at 50% 0%, rgba(212,168,75,0.15) 0%, transparent 60%),
+                  linear-gradient(180deg, #0a1628 0%, #050b14 100%);
+    }
+    .light .hero-bg {
+      background: radial-gradient(ellipse at 50% 0%, rgba(212,168,75,0.2) 0%, transparent 55%),
+                  linear-gradient(180deg, #f7f1e8 0%, #e8dfd0 100%);
+    }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .line-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    /* Custom select */
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23d4a84b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 1.2em;
+    }
+    /* Stars */
+    .star-filled { color: #d4a84b; }
+    .star-empty { color: #4a5568; }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 nav-glass border-b border-gold-500/10 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-18">
+        <!-- Logo -->
+        <a href="#home" class="flex items-center gap-2 group" onclick="navigate('home')">
+          <span class="text-2xl">📚</span>
+          <span class="font-display text-xl md:text-2xl font-bold tracking-tight text-gold-500 group-hover:text-gold-400 transition">WORLD BOOK</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden lg:flex items-center gap-1">
+          <button onclick="navigate('home')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold-500/10 hover:text-gold-500 transition" data-page="home">Home</button>
+          <button onclick="navigate('explore')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold-500/10 hover:text-gold-500 transition" data-page="explore">Explore</button>
+          <button onclick="navigate('books')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold-500/10 hover:text-gold-500 transition" data-page="books">Books</button>
+          <button onclick="navigate('authors')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold-500/10 hover:text-gold-500 transition" data-page="authors">Authors</button>
+          <button onclick="navigate('genres')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold-500/10 hover:text-gold-500 transition" data-page="genres">Genres</button>
+          <button onclick="navigate('classics')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold-500/10 hover:text-gold-500 transition" data-page="classics">Classics</button>
+          <button onclick="navigate('favorites')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold-500/10 hover:text-gold-500 transition" data-page="favorites">Favorites</button>
+          <button onclick="navigate('about')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium hover:bg-gold-500/10 hover:text-gold-500 transition" data-page="about">About</button>
+        </div>
+
+        <!-- Right controls -->
+        <div class="flex items-center gap-2 md:gap-3">
+          <button onclick="document.getElementById('searchInput').focus(); navigate('books')" class="p-2 rounded-full hover:bg-gold-500/10 transition" title="Search">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </button>
+          <button id="themeToggle" onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gold-500/10 transition" title="Toggle theme">
+            <span id="themeIcon">🌙</span>
+          </button>
+          <div class="relative">
+            <button onclick="toggleLangMenu()" class="p-2 rounded-full hover:bg-gold-500/10 transition flex items-center gap-1" title="Language">
+              <span id="langFlag">🇬🇧</span>
+            </button>
+            <div id="langMenu" class="hidden absolute right-0 mt-2 w-40 glass rounded-xl shadow-glass py-2 z-50">
+              <button onclick="setLanguage('en')" class="w-full text-left px-4 py-2 hover:bg-gold-500/10 text-sm">🇬🇧 English</button>
+              <button onclick="setLanguage('ru')" class="w-full text-left px-4 py-2 hover:bg-gold-500/10 text-sm">🇷🇺 Русский</button>
+              <button onclick="setLanguage('uz')" class="w-full text-left px-4 py-2 hover:bg-gold-500/10 text-sm">🇺🇿 O‘zbek</button>
+              <button onclick="setLanguage('tr')" class="w-full text-left px-4 py-2 hover:bg-gold-500/10 text-sm">🇹🇷 Türkçe</button>
+              <button onclick="setLanguage('ar')" class="w-full text-left px-4 py-2 hover:bg-gold-500/10 text-sm">🇸🇦 العربية</button>
+              <button onclick="setLanguage('es')" class="w-full text-left px-4 py-2 hover:bg-gold-500/10 text-sm">🇪🇸 Español</button>
+              <button onclick="setLanguage('fr')" class="w-full text-left px-4 py-2 hover:bg-gold-500/10 text-sm">🇫🇷 Français</button>
+              <button onclick="setLanguage('de')" class="w-full text-left px-4 py-2 hover:bg-gold-500/10 text-sm">🇩🇪 Deutsch</button>
+            </div>
+          </div>
+          <button onclick="navigate('favorites')" class="p-2 rounded-full hover:bg-gold-500/10 transition relative" title="My Library">
+            <span>👤</span>
+            <span id="favBadge" class="hidden absolute -top-1 -right-1 w-4 h-4 bg-gold-500 text-navy-900 text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+          </button>
+          <!-- Mobile menu button -->
+          <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-full hover:bg-gold-500/10 transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-gold-500/10">
+      <div class="px-4 py-3 space-y-1">
+        <button onclick="navigate('home'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-gold-500/10">Home</button>
+        <button onclick="navigate('explore'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-gold-500/10">Explore</button>
+        <button onclick="navigate('books'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-gold-500/10">Books</button>
+        <button onclick="navigate('authors'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-gold-500/10">Authors</button>
+        <button onclick="navigate('genres'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-gold-500/10">Genres</button>
+        <button onclick="navigate('classics'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-gold-500/10">Classics</button>
+        <button onclick="navigate('favorites'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-gold-500/10">Favorites</button>
+        <button onclick="navigate('about'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-gold-500/10">About</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="app" class="pt-16 md:pt-18 min-h-screen">
+    <!-- Content will be injected here -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gold-500/10 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-2xl">📚</span>
+            <span class="font-display text-xl font-bold text-gold-500">WORLD BOOK</span>
+          </div>
+          <p class="text-sm opacity-70 leading-relaxed" data-i18n="footer_tagline">Discover stories. Explore knowledge. Read the world.</p>
+          <p class="text-xs opacity-50 mt-4" data-i18n="footer_legal">WorldBook is a book discovery and catalog platform. We respect copyright and link to authorized sources.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3 text-gold-500">Links</h4>
+          <ul class="space-y-2 text-sm opacity-80">
+            <li><button onclick="navigate('about')" class="hover:text-gold-500 transition">About</button></li>
+            <li><a href="mailto:hello@worldbook.app" class="hover:text-gold-500 transition">Contact</a></li>
+            <li><button class="hover:text-gold-500 transition">Privacy</button></li>
+            <li><button class="hover:text-gold-500 transition">Terms</button></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3 text-gold-500">Sources</h4>
+          <ul class="space-y-2 text-sm opacity-80">
+            <li><a href="https://openlibrary.org" target="_blank" rel="noopener" class="hover:text-gold-500 transition">Open Library</a></li>
+            <li><a href="https://books.google.com" target="_blank" rel="noopener" class="hover:text-gold-500 transition">Google Books</a></li>
+            <li class="opacity-60 text-xs mt-4">Data provided by Open Library. Covers & metadata © respective rights holders.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-10 pt-6 border-t border-gold-500/10 text-center text-xs opacity-50">
+        © 2026 WorldBook. One World. Millions of Stories.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Book Detail Modal -->
+  <div id="bookModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+    <div class="glass rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative animate-slide-up">
+      <button onclick="closeBookModal()" class="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/30 hover:bg-black/50 text-white transition">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div id="bookModalContent" class="p-6 md:p-8">
+        <!-- Filled dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-[200] hidden px-5 py-3 rounded-xl glass shadow-lg text-sm font-medium animate-slide-up"></div>
+
+  <script>
+    // ==================== STATE ====================
+    const state = {
+      page: 'home',
+      query: '',
+      books: [],
+      total: 0,
+      pageNum: 1,
+      loading: false,
+      filters: { genre: '', language: '', yearFrom: '', yearTo: '', sort: 'relevance' },
+      favorites: JSON.parse(localStorage.getItem('wb_favorites') || '[]'),
+      theme: localStorage.getItem('wb_theme') || 'dark',
+      lang: localStorage.getItem('wb_lang') || 'en',
+      currentBook: null,
+      authors: [],
+      discover: { genre: '', mood: '', language: '' }
+    };
+
+    // ==================== i18n ====================
+    const i18n = {
+      en: {
+        hero_title: 'WORLD BOOK',
+        hero_sub: "The world's books. One place.",
+        hero_tag: 'Find the book you’ve been looking for.',
+        search_placeholder: 'Search books, authors, ISBN...',
+        search_btn: 'SEARCH',
+        popular: 'Popular Books',
+        trending: 'Trending Now',
+        most_read: 'Most Read',
+        highest_rated: 'Highest Rated',
+        new_releases: 'New Releases',
+        classics: 'Classic Books',
+        hidden_gems: 'Hidden Gems',
+        explore: 'Explore',
+        books: 'Books',
+        authors: 'Authors',
+        genres: 'Genres',
+        favorites: 'My Library',
+        about: 'About',
+        view_details: 'View Details',
+        read_online: 'Read Online',
+        official: 'Official Source',
+        add_fav: 'Add to Favorites',
+        remove_fav: 'Remove from Favorites',
+        no_results: 'No books found. Try a different search.',
+        loading: 'Searching the world’s libraries…',
+        footer_tagline: 'Discover stories. Explore knowledge. Read the world.',
+        footer_legal: 'WorldBook is a book discovery and catalog platform. We respect copyright and link to authorized sources.',
+        discover_title: 'Discover Your Next Book',
+        want_to_read: 'Want to Read',
+        currently: 'Currently Reading',
+        finished: 'Finished',
+        filters: 'Filters',
+        genre: 'Genre',
+        language: 'Language',
+        year: 'Year',
+        apply: 'Apply Filters',
+        clear: 'Clear',
+        world_classics: 'World Classics',
+        about_text: 'WorldBook is a global book discovery platform that helps you find books from every corner of the world. We connect you with official sources and respect copyright.'
+      },
+      ru: {
+        hero_title: 'WORLD BOOK',
+        hero_sub: 'Книги мира. В одном месте.',
+        hero_tag: 'Найдите книгу, которую давно искали.',
+        search_placeholder: 'Поиск книг, авторов, ISBN...',
+        search_btn: 'НАЙТИ',
+        popular: 'Популярные книги',
+        trending: 'В тренде',
+        most_read: 'Самые читаемые',
+        highest_rated: 'Высокий рейтинг',
+        new_releases: 'Новинки',
+        classics: 'Классика',
+        hidden_gems: 'Скрытые жемчужины',
+        explore: 'Обзор',
+        books: 'Книги',
+        authors: 'Авторы',
+        genres: 'Жанры',
+        favorites: 'Моя библиотека',
+        about: 'О проекте',
+        view_details: 'Подробнее',
+        read_online: 'Читать онлайн',
+        official: 'Официальный источник',
+        add_fav: 'В избранное',
+        remove_fav: 'Удалить из избранного',
+        no_results: 'Книги не найдены. Попробуйте другой запрос.',
+        loading: 'Ищем в мировых библиотеках…',
+        footer_tagline: 'Открывайте истории. Исследуйте знания. Читайте мир.',
+        footer_legal: 'WorldBook — платформа для поиска и каталогизации книг. Мы уважаем авторские права и ссылаемся на официальные источники.',
+        discover_title: 'Найдите следующую книгу',
+        want_to_read: 'Хочу прочитать',
+        currently: 'Читаю сейчас',
+        finished: 'Прочитано',
+        filters: 'Фильтры',
+        genre: 'Жанр',
+        language: 'Язык',
+        year: 'Год',
+        apply: 'Применить',
+        clear: 'Сбросить',
+        world_classics: 'Мировая классика',
+        about_text: 'WorldBook — глобальная платформа для открытия книг со всего мира. Мы соединяем вас с официальными источниками и уважаем авторские права.'
+      },
+      uz: {
+        hero_title: 'WORLD BOOK',
+        hero_sub: 'Dunyo kitoblari. Bir joyda.',
+        hero_tag: 'Uzoq vaqtdan beri qidirgan kitobingizni toping.',
+        search_placeholder: 'Kitoblar, mualliflar, ISBN qidirish...',
+        search_btn: 'QIDIRISH',
+        popular: 'Mashhur kitoblar',
+        trending: 'Trendda',
+        most_read: 'Eng ko‘p o‘qilgan',
+        highest_rated: 'Yuqori reyting',
+        new_releases: 'Yangi nashrlar',
+        classics: 'Klassikalar',
+        hidden_gems: 'Yashirin durdonalar',
+        explore: 'Kashf etish',
+        books: 'Kitoblar',
+        authors: 'Mualliflar',
+        genres: 'Janrlar',
+        favorites: 'Mening kutubxonam',
+        about: 'Haqida',
+        view_details: 'Batafsil',
+        read_online: 'Onlayn o‘qish',
+        official: 'Rasmiy manba',
+        add_fav: 'Sevimlilarga',
+        remove_fav: 'Sevimlilardan olib tashlash',
+        no_results: 'Kitoblar topilmadi. Boshqa so‘rovni sinab ko‘ring.',
+        loading: 'Dunyo kutubxonalaridan qidirilmoqda…',
+        footer_tagline: 'Hikoyalarni kashf eting. Bilimni o‘rganing. Dunyoni o‘qing.',
+        footer_legal: 'WorldBook — kitoblarni kashf etish va kataloglash platformasi. Biz mualliflik huquqlarini hurmat qilamiz.',
+        discover_title: 'Keyingi kitobingizni toping',
+        want_to_read: 'O‘qimoqchiman',
+        currently: 'Hozir o‘qiyapman',
+        finished: 'O‘qib bo‘ldim',
+        filters: 'Filtrlar',
+        genre: 'Janr',
+        language: 'Til',
+        year: 'Yil',
+        apply: 'Qo‘llash',
+        clear: 'Tozalash',
+        world_classics: 'Jahon klassikasi',
+        about_text: 'WorldBook — dunyoning har bir burchagidan kitoblarni topishga yordam beradigan global platforma.'
+      },
+      tr: {
+        hero_title: 'WORLD BOOK',
+        hero_sub: 'Dünyanın kitapları. Tek yerde.',
+        hero_tag: 'Uzun zamandır aradığınız kitabı bulun.',
+        search_placeholder: 'Kitap, yazar, ISBN ara...',
+        search_btn: 'ARA',
+        popular: 'Popüler Kitaplar',
+        trending: 'Trend',
+        most_read: 'En Çok Okunan',
+        highest_rated: 'En Yüksek Puan',
+        new_releases: 'Yeni Çıkanlar',
+        classics: 'Klasikler',
+        hidden_gems: 'Gizli Hazineler',
+        explore: 'Keşfet',
+        books: 'Kitaplar',
+        authors: 'Yazarlar',
+        genres: 'Türler',
+        favorites: 'Kütüphanem',
+        about: 'Hakkında',
+        view_details: 'Detaylar',
+        read_online: 'Çevrimiçi Oku',
+        official: 'Resmi Kaynak',
+        add_fav: 'Favorilere Ekle',
+        remove_fav: 'Favorilerden Çıkar',
+        no_results: 'Kitap bulunamadı. Farklı bir arama deneyin.',
+        loading: 'Dünya kütüphanelerinde aranıyor…',
+        footer_tagline: 'Hikayeleri keşfedin. Bilgiyi araştırın. Dünyayı okuyun.',
+        footer_legal: 'WorldBook, telif haklarına saygı duyan bir kitap keşif platformudur.',
+        discover_title: 'Sonraki Kitabınızı Keşfedin',
+        want_to_read: 'Okumak İstiyorum',
+        currently: 'Şu An Okuyorum',
+        finished: 'Bitirdim',
+        filters: 'Filtreler',
+        genre: 'Tür',
+        language: 'Dil',
+        year: 'Yıl',
+        apply: 'Uygula',
+        clear: 'Temizle',
+        world_classics: 'Dünya Klasikleri',
+        about_text: 'WorldBook, dünyanın her yerinden kitapları keşfetmenize yardımcı olan küresel bir platformdur.'
+      },
+      ar: {
+        hero_title: 'WORLD BOOK',
+        hero_sub: 'كتب العالم. في مكان واحد.',
+        hero_tag: 'اعثر على الكتاب الذي طالما بحثت عنه.',
+        search_placeholder: 'ابحث عن كتب، مؤلفين، ISBN...',
+        search_btn: 'بحث',
+        popular: 'كتب شائعة',
+        trending: 'رائج الآن',
+        most_read: 'الأكثر قراءة',
+        highest_rated: 'الأعلى تقييماً',
+        new_releases: 'إصدارات جديدة',
+        classics: 'كلاسيكيات',
+        hidden_gems: 'جواهر مخفية',
+        explore: 'استكشف',
+        books: 'كتب',
+        authors: 'مؤلفون',
+        genres: 'أنواع',
+        favorites: 'مكتبتي',
+        about: 'حول',
+        view_details: 'التفاصيل',
+        read_online: 'اقرأ عبر الإنترنت',
+        official: 'المصدر الرسمي',
+        add_fav: 'أضف إلى المفضلة',
+        remove_fav: 'إزالة من المفضلة',
+        no_results: 'لم يتم العثور على كتب. جرب بحثاً مختلفاً.',
+        loading: 'نبحث في مكتبات العالم…',
+        footer_tagline: 'اكتشف القصص. استكشف المعرفة. اقرأ العالم.',
+        footer_legal: 'WorldBook منصة لاكتشاف الكتب وتحترم حقوق النشر.',
+        discover_title: 'اكتشف كتابك التالي',
+        want_to_read: 'أريد قراءته',
+        currently: 'أقرأ حالياً',
+        finished: 'انتهيت',
+        filters: 'فلاتر',
+        genre: 'النوع',
+        language: 'اللغة',
+        year: 'السنة',
+        apply: 'تطبيق',
+        clear: 'مسح',
+        world_classics: 'كلاسيكيات العالم',
+        about_text: 'WorldBook منصة عالمية لاكتشاف الكتب من جميع أنحاء العالم.'
+      },
+      es: {
+        hero_title: 'WORLD BOOK',
+        hero_sub: 'Los libros del mundo. En un solo lugar.',
+        hero_tag: 'Encuentra el libro que has estado buscando.',
+        search_placeholder: 'Buscar libros, autores, ISBN...',
+        search_btn: 'BUSCAR',
+        popular: 'Libros Populares',
+        trending: 'Tendencias',
+        most_read: 'Más Leídos',
+        highest_rated: 'Mejor Valorados',
+        new_releases: 'Novedades',
+        classics: 'Clásicos',
+        hidden_gems: 'Joyas Ocultas',
+        explore: 'Explorar',
+        books: 'Libros',
+        authors: 'Autores',
+        genres: 'Géneros',
+        favorites: 'Mi Biblioteca',
+        about: 'Acerca de',
+        view_details: 'Ver Detalles',
+        read_online: 'Leer en línea',
+        official: 'Fuente oficial',
+        add_fav: 'Añadir a favoritos',
+        remove_fav: 'Quitar de favoritos',
+        no_results: 'No se encontraron libros. Prueba otra búsqueda.',
+        loading: 'Buscando en las bibliotecas del mundo…',
+        footer_tagline: 'Descubre historias. Explora el conocimiento. Lee el mundo.',
+        footer_legal: 'WorldBook es una plataforma de descubrimiento de libros que respeta los derechos de autor.',
+        discover_title: 'Descubre tu próximo libro',
+        want_to_read: 'Quiero leer',
+        currently: 'Leyendo ahora',
+        finished: 'Terminado',
+        filters: 'Filtros',
+        genre: 'Género',
+        language: 'Idioma',
+        year: 'Año',
+        apply: 'Aplicar',
+        clear: 'Limpiar',
+        world_classics: 'Clásicos Mundiales',
+        about_text: 'WorldBook es una plataforma global para descubrir libros de todo el mundo.'
+      },
+      fr: {
+        hero_title: 'WORLD BOOK',
+        hero_sub: 'Les livres du monde. En un seul endroit.',
+        hero_tag: 'Trouvez le livre que vous cherchez depuis longtemps.',
+        search_placeholder: 'Rechercher livres, auteurs, ISBN...',
+        search_btn: 'RECHERCHER',
+        popular: 'Livres Populaires',
+        trending: 'Tendances',
+        most_read: 'Les Plus Lus',
+        highest_rated: 'Mieux Notés',
+        new_releases: 'Nouveautés',
+        classics: 'Classiques',
+        hidden_gems: 'Perles Cachées',
+        explore: 'Explorer',
+        books: 'Livres',
+        authors: 'Auteurs',
+        genres: 'Genres',
+        favorites: 'Ma Bibliothèque',
+        about: 'À propos',
+        view_details: 'Voir les détails',
+        read_online: 'Lire en ligne',
+        official: 'Source officielle',
+        add_fav: 'Ajouter aux favoris',
+        remove_fav: 'Retirer des favoris',
+        no_results: 'Aucun livre trouvé. Essayez une autre recherche.',
+        loading: 'Recherche dans les bibliothèques du monde…',
+        footer_tagline: 'Découvrez des histoires. Explorez le savoir. Lisez le monde.',
+        footer_legal: 'WorldBook est une plateforme de découverte de livres qui respecte le droit d’auteur.',
+        discover_title: 'Découvrez votre prochain livre',
+        want_to_read: 'À lire',
+        currently: 'En cours',
+        finished: 'Terminé',
+        filters: 'Filtres',
+        genre: 'Genre',
+        language: 'Langue',
+        year: 'Année',
+        apply: 'Appliquer',
+        clear: 'Effacer',
+        world_classics: 'Classiques Mondiaux',
+        about_text: 'WorldBook est une plateforme mondiale pour découvrir des livres du monde entier.'
+      },
+      de: {
+        hero_title: 'WORLD BOOK',
+        hero_sub: 'Die Bücher der Welt. An einem Ort.',
+        hero_tag: 'Finden Sie das Buch, das Sie schon lange suchen.',
+        search_placeholder: 'Bücher, Autoren, ISBN suchen...',
+        search_btn: 'SUCHEN',
+        popular: 'Beliebte Bücher',
+        trending: 'Im Trend',
+        most_read: 'Meistgelesen',
+        highest_rated: 'Bestbewertet',
+        new_releases: 'Neuerscheinungen',
+        classics: 'Klassiker',
+        hidden_gems: 'Verborgene Schätze',
+        explore: 'Entdecken',
+        books: 'Bücher',
+        authors: 'Autoren',
+        genres: 'Genres',
+        favorites: 'Meine Bibliothek',
+        about: 'Über uns',
+        view_details: 'Details anzeigen',
+        read_online: 'Online lesen',
+        official: 'Offizielle Quelle',
+        add_fav: 'Zu Favoriten',
+        remove_fav: 'Aus Favoriten entfernen',
+        no_results: 'Keine Bücher gefunden. Versuchen Sie eine andere Suche.',
+        loading: 'Suche in den Bibliotheken der Welt…',
+        footer_tagline: 'Geschichten entdecken. Wissen erforschen. Die Welt lesen.',
+        footer_legal: 'WorldBook ist eine Buchentdeckungsplattform, die Urheberrechte respektiert.',
+        discover_title: 'Entdecken Sie Ihr nächstes Buch',
+        want_to_read: 'Möchte lesen',
+        currently: 'Aktuell lesend',
+        finished: 'Gelesen',
+        filters: 'Filter',
+        genre: 'Genre',
+        language: 'Sprache',
+        year: 'Jahr',
+        apply: 'Anwenden',
+        clear: 'Löschen',
+        world_classics: 'Weltklassiker',
+        about_text: 'WorldBook ist eine globale Plattform, um Bücher aus der ganzen Welt zu entdecken.'
+      }
+    };
+
+    const t = (key) => (i18n[state.lang] && i18n[state.lang][key]) || i18n.en[key] || key;
+
+    // ==================== THEME ====================
+    function applyTheme() {
+      if (state.theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.getElementById('themeIcon').textContent = '☀️';
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.getElementById('themeIcon').textContent = '🌙';
+      }
+      localStorage.setItem('wb_theme', state.theme);
+    }
+    function toggleTheme() {
+      state.theme = state.theme === 'dark' ? 'light' : 'dark';
+      applyTheme();
+    }
+
+    // ==================== LANGUAGE ====================
+    const langFlags = { en: '🇬🇧', ru: '🇷🇺', uz: '🇺🇿', tr: '🇹🇷', ar: '🇸🇦', es: '🇪🇸', fr: '🇫🇷', de: '🇩🇪' };
+    function setLanguage(lang) {
+      state.lang = lang;
+      localStorage.setItem('wb_lang', lang);
+      document.getElementById('langFlag').textContent = langFlags[lang] || '🌐';
+      document.getElementById('langMenu').classList.add('hidden');
+      if (lang === 'ar') document.documentElement.dir = 'rtl';
+      else document.documentElement.dir = 'ltr';
+      render();
+      updateI18nTexts();
+    }
+    function toggleLangMenu() {
+      document.getElementById('langMenu').classList.toggle('hidden');
+    }
+    function updateI18nTexts() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        el.textContent = t(key);
+      });
+    }
+
+    // ==================== FAVORITES ====================
+    function isFavorite(key) {
+      return state.favorites.some(f => f.key === key);
+    }
+    function toggleFavorite(book) {
+      const idx = state.favorites.findIndex(f => f.key === book.key);
+      if (idx >= 0) {
+        state.favorites.splice(idx, 1);
+        showToast(t('remove_fav'));
+      } else {
+        state.favorites.push({
+          key: book.key,
+          title: book.title,
+          author: book.author_name ? book.author_name[0] : 'Unknown',
+          cover: getCover(book),
+          year: book.first_publish_year || '',
+          added: Date.now()
+        });
+        showToast(t('add_fav'));
+      }
+      localStorage.setItem('wb_favorites', JSON.stringify(state.favorites));
+      updateFavBadge();
+      if (state.page === 'favorites') render();
+      // Update modal button if open
+      const btn = document.getElementById('modalFavBtn');
+      if (btn) btn.innerHTML = isFavorite(book.key) ? `❤️ ${t('remove_fav')}` : `🤍 ${t('add_fav')}`;
+    }
+    function updateFavBadge() {
+      const badge = document.getElementById('favBadge');
+      if (state.favorites.length > 0) {
+        badge.classList.remove('hidden');
+        badge.textContent = state.favorites.length > 9 ? '9+' : state.favorites.length;
+      } else {
+        badge.classList.add('hidden');
+      }
+    }
+
+    // ==================== API ====================
+    function getCover(book, size = 'M') {
+      if (book.cover_i) return `https://covers.openlibrary.org/b/id/${book.cover_i}-${size}.jpg`;
+      if (book.isbn && book.isbn[0]) return `https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-${size}.jpg`;
+      if (book.cover_edition_key) return `https://covers.openlibrary.org/b/olid/${book.cover_edition_key}-${size}.jpg`;
+      return `https://covers.openlibrary.org/b/id/1093-${size}.jpg`; // fallback
+    }
+
+    async function searchBooks(q = '', page = 1, extra = {}) {
+      state.loading = true;
+      const limit = 24;
+      let url = `https://openlibrary.org/search.json?limit=${limit}&page=${page}`;
+      if (q) url += `&q=${encodeURIComponent(q)}`;
+      if (extra.subject) url += `&subject=${encodeURIComponent(extra.subject)}`;
+      if (extra.language) url += `&language=${extra.language}`;
+      if (extra.author) url += `&author=${encodeURIComponent(extra.author)}`;
+      if (state.filters.yearFrom || state.filters.yearTo) {
+        // Open Library supports first_publish_year
+        if (state.filters.yearFrom && state.filters.yearTo) {
+          url += `&q=${encodeURIComponent((q || '*') + ` first_publish_year:[${state.filters.yearFrom} TO ${state.filters.yearTo}]`)}`;
+        }
+      }
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('API error');
+        const data = await res.json();
+        state.books = data.docs || [];
+        state.total = data.numFound || 0;
+        state.pageNum = page;
+        state.loading = false;
+        return data;
+      } catch (e) {
+        console.error(e);
+        state.loading = false;
+        state.books = [];
+        showToast('Error loading books. Please try again.');
+        return { docs: [], numFound: 0 };
+      }
+    }
+
+    async function getWorkDetails(key) {
+      try {
+        const res = await fetch(`https://openlibrary.org${key}.json`);
+        return await res.json();
+      } catch {
+        return null;
+      }
+    }
+
+    // ==================== RENDER HELPERS ====================
+    function stars(rating = 0) {
+      const r = Math.round(rating || 0);
+      let s = '';
+      for (let i = 1; i <= 5; i++) s += i <= r ? '<span class="star-filled">★</span>' : '<span class="star-empty">☆</span>';
+      return s;
+    }
+
+    function bookCard(book, index = 0) {
+      const cover = getCover(book);
+      const author = book.author_name ? book.author_name[0] : 'Unknown Author';
+      const year = book.first_publish_year || '—';
+      const genre = (book.subject && book.subject[0]) || '';
+      const lang = (book.language && book.language[0]) || '';
+      const fav = isFavorite(book.key);
+      return `
+        <div class="book-card glass rounded-2xl overflow-hidden flex flex-col animate-fade-in" style="animation-delay: ${index * 40}ms">
+          <div class="relative aspect-[2/3] overflow-hidden bg-navy-800">
+            <img src="${cover}" alt="${book.title}" class="w-full h-full object-cover transition duration-500 hover:scale-105" loading="lazy"
+              onerror="this.src='https://covers.openlibrary.org/b/id/1093-M.jpg'" />
+            <button onclick='toggleFavorite(${JSON.stringify(book).replace(/'/g, "&#39;")})' class="absolute top-2 right-2 p-2 rounded-full bg-black/40 hover:bg-black/60 text-white transition text-sm">
+              ${fav ? '❤️' : '🤍'}
+            </button>
+          </div>
+          <div class="p-4 flex flex-col flex-1">
+            <h3 class="font-semibold text-sm leading-snug line-clamp-2 mb-1">${book.title || 'Untitled'}</h3>
+            <p class="text-xs opacity-70 mb-2">${author}</p>
+            <div class="flex items-center gap-2 text-xs opacity-60 mb-2">
+              <span>${year}</span>
+              ${genre ? `<span>·</span><span class="truncate">${genre}</span>` : ''}
+            </div>
+            <div class="text-sm mb-3">${stars(book.ratings_average || 3.5)}</div>
+            <div class="mt-auto flex gap-2">
+              <button onclick='openBookModal(${JSON.stringify(book).replace(/'/g, "&#39;")})' class="flex-1 py-2 px-3 rounded-lg bg-gold-500/20 hover:bg-gold-500/30 text-gold-500 text-xs font-medium transition">
+                ${t('view_details')}
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function skeletonCards(n = 8) {
+      return Array(n).fill(0).map(() => `
+        <div class="rounded-2xl overflow-hidden glass">
+          <div class="aspect-[2/3] skeleton"></div>
+          <div class="p-4 space-y-2">
+            <div class="h-4 skeleton rounded w-3/4"></div>
+            <div class="h-3 skeleton rounded w-1/2"></div>
+            <div class="h-3 skeleton rounded w-1/3"></div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ==================== PAGES ====================
+    function renderHome() {
+      return `
+        <!-- Hero -->
+        <section class="hero-bg relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+          <!-- Decorative shelves -->
+          <div class="absolute inset-0 opacity-20 pointer-events-none">
+            <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-navy-950 to-transparent"></div>
+            <div class="flex justify-center gap-3 absolute bottom-20 left-1/2 -translate-x-1/2 scale-75 md:scale-100">
+              ${['#8B4513','#2F4F4F','#4A0000','#1a3a5c','#3d2b1f','#2c3e50','#5d4e37','#1c2833'].map((c,i) => `
+                <div class="shelf-book w-10 h-36 md:w-12 md:h-44 rounded-sm shadow-lg" style="background:${c}; transform: rotate(${(i%3-1)*2}deg)"></div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+            <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-3 text-gold-400 drop-shadow-lg animate-fade-in">
+              ${t('hero_title')}
+            </h1>
+            <p class="text-xl md:text-2xl opacity-90 mb-2 font-light animate-fade-in" style="animation-delay:100ms">${t('hero_sub')}</p>
+            <p class="text-base md:text-lg opacity-70 mb-10 animate-fade-in" style="animation-delay:200ms">${t('hero_tag')}</p>
+
+            <!-- Search -->
+            <div class="max-w-2xl mx-auto animate-fade-in" style="animation-delay:300ms">
+              <div class="flex flex-col sm:flex-row gap-3 glass rounded-2xl p-2 shadow-glass">
+                <div class="flex-1 flex items-center gap-3 px-4">
+                  <span class="text-xl opacity-60">🔍</span>
+                  <input id="searchInput" type="text" placeholder="${t('search_placeholder')}"
+                    class="w-full bg-transparent outline-none text-base py-3 placeholder-opacity-50"
+                    onkeydown="if(event.key==='Enter') doSearch()" />
+                </div>
+                <button onclick="doSearch()" class="px-8 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-900 font-semibold transition shadow-gold">
+                  ${t('search_btn')}
+                </button>
+              </div>
+              <!-- Quick filters -->
+              <div class="flex flex-wrap justify-center gap-2 mt-5">
+                ${['Fantasy','Science Fiction','Romance','Mystery','History','Philosophy','Poetry'].map(g => `
+                  <button onclick="quickSearch('${g}')" class="px-4 py-1.5 rounded-full text-sm glass hover:bg-gold-500/20 hover:text-gold-400 transition">${g}</button>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Popular sections -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <h2 class="font-display text-3xl font-bold mb-8 text-center">${t('popular')}</h2>
+          
+          <div class="mb-12">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-semibold text-gold-500">${t('trending')}</h3>
+              <button onclick="quickSearch('bestseller')" class="text-sm opacity-70 hover:text-gold-500 transition">See all →</button>
+            </div>
+            <div id="trendingBooks" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              ${skeletonCards(6)}
+            </div>
+          </div>
+
+          <div class="mb-12">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-semibold text-gold-500">${t('classics')}</h3>
+              <button onclick="navigate('classics')" class="text-sm opacity-70 hover:text-gold-500 transition">See all →</button>
+            </div>
+            <div id="classicBooks" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              ${skeletonCards(6)}
+            </div>
+          </div>
+
+          <!-- Discover -->
+          <div class="glass rounded-3xl p-8 md:p-12 mt-16 text-center">
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4">${t('discover_title')}</h2>
+            <p class="opacity-70 mb-8 max-w-xl mx-auto">Select your preferences and we’ll suggest books tailored to you.</p>
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+              <select id="discGenre" class="glass rounded-xl px-4 py-3 text-sm outline-none min-w-[140px]">
+                <option value="">Genre</option>
+                <option>Fantasy</option><option>Romance</option><option>Mystery</option>
+                <option>Science Fiction</option><option>History</option><option>Philosophy</option>
+                <option>Psychology</option><option>Poetry</option><option>Adventure</option>
+              </select>
+              <select id="discMood" class="glass rounded-xl px-4 py-3 text-sm outline-none min-w-[140px]">
+                <option value="">Mood</option>
+                <option>Inspiring</option><option>Dark</option><option>Lighthearted</option>
+                <option>Thought-provoking</option><option>Adventurous</option><option>Romantic</option>
+              </select>
+              <select id="discLang" class="glass rounded-xl px-4 py-3 text-sm outline-none min-w-[140px]">
+                <option value="">Language</option>
+                <option value="eng">English</option><option value="rus">Russian</option>
+                <option value="fre">French</option><option value="spa">Spanish</option>
+                <option value="ger">German</option><option value="ara">Arabic</option>
+              </select>
+            </div>
+            <button onclick="doDiscover()" class="px-8 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-900 font-semibold transition">
+              Discover Books
+            </button>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderBooks() {
+      return `
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Filters sidebar -->
+            <aside class="lg:w-64 flex-shrink-0">
+              <div class="glass rounded-2xl p-5 sticky top-24">
+                <h3 class="font-semibold mb-4 text-gold-500">${t('filters')}</h3>
+                <div class="space-y-4">
+                  <div>
+                    <label class="text-xs opacity-70 block mb-1">${t('genre')}</label>
+                    <select id="filterGenre" class="w-full glass rounded-lg px-3 py-2 text-sm outline-none">
+                      <option value="">All</option>
+                      <option>Fantasy</option><option>Romance</option><option>Mystery</option>
+                      <option>Thriller</option><option>Horror</option><option>Science Fiction</option>
+                      <option>History</option><option>Biography</option><option>Philosophy</option>
+                      <option>Psychology</option><option>Business</option><option>Poetry</option>
+                      <option>Adventure</option><option>Religion</option><option>Science</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="text-xs opacity-70 block mb-1">${t('language')}</label>
+                    <select id="filterLang" class="w-full glass rounded-lg px-3 py-2 text-sm outline-none">
+                      <option value="">All</option>
+                      <option value="eng">English</option><option value="rus">Russian</option>
+                      <option value="fre">French</option><option value="spa">Spanish</option>
+                      <option value="ger">German</option><option value="ita">Italian</option>
+                      <option value="por">Portuguese</option><option value="ara">Arabic</option>
+                      <option value="chi">Chinese</option><option value="jpn">Japanese</option>
+                      <option value="tur">Turkish</option>
+                    </select>
+                  </div>
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                      <label class="text-xs opacity-70 block mb-1">From</label>
+                      <input id="filterYearFrom" type="number" placeholder="1800" class="w-full glass rounded-lg px-3 py-2 text-sm outline-none" />
+                    </div>
+                    <div>
+                      <label class="text-xs opacity-70 block mb-1">To</label>
+                      <input id="filterYearTo" type="number" placeholder="2026" class="w-full glass rounded-lg px-3 py-2 text-sm outline-none" />
+                    </div>
+                  </div>
+                  <button onclick="applyFilters()" class="w-full py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-900 font-medium text-sm transition">${t('apply')}</button>
+                  <button onclick="clearFilters()" class="w-full py-2 rounded-xl glass text-sm opacity-70 hover:opacity-100 transition">${t('clear')}</button>
+                </div>
+              </div>
+            </aside>
+
+            <!-- Results -->
+            <div class="flex-1">
+              <div class="flex flex-col sm:flex-row gap-3 mb-6">
+                <div class="flex-1 flex items-center gap-3 glass rounded-xl px-4">
+                  <span>🔍</span>
+                  <input id="booksSearchInput" type="text" value="${state.query}" placeholder="${t('search_placeholder')}"
+                    class="w-full bg-transparent outline-none py-3 text-sm"
+                    onkeydown="if(event.key==='Enter'){state.query=this.value;doSearchFromBooks()}" />
+                </div>
+                <button onclick="state.query=document.getElementById('booksSearchInput').value;doSearchFromBooks()" class="px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-900 font-semibold text-sm transition">
+                  ${t('search_btn')}
+                </button>
+              </div>
+
+              <div class="flex items-center justify-between mb-4">
+                <p class="text-sm opacity-70"><span id="resultCount">${state.total.toLocaleString()}</span> books found</p>
+                <div class="flex gap-2">
+                  <button onclick="loadMore(state.pageNum-1)" ${state.pageNum<=1?'disabled':''} class="px-3 py-1.5 rounded-lg glass text-sm disabled:opacity-30">← Prev</button>
+                  <span class="px-3 py-1.5 text-sm opacity-70">Page ${state.pageNum}</span>
+                  <button onclick="loadMore(state.pageNum+1)" class="px-3 py-1.5 rounded-lg glass text-sm">Next →</button>
+                </div>
+              </div>
+
+              <div id="booksGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                ${state.loading ? skeletonCards(12) : (state.books.length ? state.books.map((b,i) => bookCard(b,i)).join('') : `<div class="col-span-full text-center py-20 opacity-60">${t('no_results')}</div>`)}
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderAuthors() {
+      const famous = [
+        { name: 'Leo Tolstoy', country: 'Russia', years: '1828–1910', books: 50, bio: 'Russian novelist, known for War and Peace and Anna Karenina.', img: 'https://covers.openlibrary.org/a/olid/OL26320A-M.jpg' },
+        { name: 'Jane Austen', country: 'England', years: '1775–1817', books: 6, bio: 'English novelist known for Pride and Prejudice and Sense and Sensibility.', img: 'https://covers.openlibrary.org/a/olid/OL21594A-M.jpg' },
+        { name: 'Fyodor Dostoevsky', country: 'Russia', years: '1821–1881', books: 15, bio: 'Russian novelist of Crime and Punishment and The Brothers Karamazov.', img: 'https://covers.openlibrary.org/a/olid/OL22242A-M.jpg' },
+        { name: 'Gabriel García Márquez', country: 'Colombia', years: '1927–2014', books: 20, bio: 'Colombian novelist, One Hundred Years of Solitude.', img: 'https://covers.openlibrary.org/a/olid/OL233218A-M.jpg' },
+        { name: 'Haruki Murakami', country: 'Japan', years: '1949–', books: 20, bio: 'Japanese writer of Norwegian Wood and Kafka on the Shore.', img: 'https://covers.openlibrary.org/a/olid/OL394281A-M.jpg' },
+        { name: 'Virginia Woolf', country: 'England', years: '1882–1941', books: 15, bio: 'English modernist writer, Mrs Dalloway and To the Lighthouse.', img: 'https://covers.openlibrary.org/a/olid/OL39455A-M.jpg' },
+        { name: 'Chinua Achebe', country: 'Nigeria', years: '1930–2013', books: 10, bio: 'Nigerian novelist, Things Fall Apart.', img: 'https://covers.openlibrary.org/a/olid/OL26386A-M.jpg' },
+        { name: 'J.K. Rowling', country: 'UK', years: '1965–', books: 15, bio: 'British author of the Harry Potter series.', img: 'https://covers.openlibrary.org/a/olid/OL23919A-M.jpg' }
+      ];
+      return `
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <h1 class="font-display text-4xl font-bold mb-2 text-center">${t('authors')}</h1>
+          <p class="text-center opacity-70 mb-10">Discover the voices that shaped literature across centuries and continents.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            ${famous.map((a,i) => `
+              <div class="glass rounded-2xl overflow-hidden book-card animate-fade-in" style="animation-delay:${i*50}ms">
+                <div class="aspect-square bg-navy-800 overflow-hidden">
+                  <img src="${a.img}" alt="${a.name}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/300x300?text=Author'" />
+                </div>
+                <div class="p-5">
+                  <h3 class="font-semibold text-lg mb-1">${a.name}</h3>
+                  <p class="text-xs opacity-60 mb-2">${a.country} · ${a.years}</p>
+                  <p class="text-sm opacity-80 line-clamp-3 mb-3">${a.bio}</p>
+                  <button onclick="quickSearch('${a.name}')" class="text-sm text-gold-500 hover:underline">${a.books}+ books →</button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderGenres() {
+      const genres = [
+        { name: 'Fantasy', emoji: '🐉', q: 'fantasy' },
+        { name: 'Science Fiction', emoji: '🚀', q: 'science_fiction' },
+        { name: 'Romance', emoji: '💕', q: 'romance' },
+        { name: 'Mystery', emoji: '🔍', q: 'mystery' },
+        { name: 'Thriller', emoji: '😱', q: 'thriller' },
+        { name: 'Horror', emoji: '👻', q: 'horror' },
+        { name: 'History', emoji: '📜', q: 'history' },
+        { name: 'Biography', emoji: '👤', q: 'biography' },
+        { name: 'Philosophy', emoji: '🧠', q: 'philosophy' },
+        { name: 'Psychology', emoji: '💭', q: 'psychology' },
+        { name: 'Poetry', emoji: '✒️', q: 'poetry' },
+        { name: 'Adventure', emoji: '🗺️', q: 'adventure' },
+        { name: 'Business', emoji: '💼', q: 'business' },
+        { name: 'Self-Development', emoji: '🌱', q: 'self-help' },
+        { name: 'Children\'s', emoji: '🧸', q: 'children' },
+        { name: 'Religion', emoji: '🕊️', q: 'religion' },
+        { name: 'Science', emoji: '🔬', q: 'science' },
+        { name: 'Technology', emoji: '💻', q: 'technology' }
+      ];
+      return `
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <h1 class="font-display text-4xl font-bold mb-2 text-center">${t('genres')}</h1>
+          <p class="text-center opacity-70 mb-10">Browse by the genres you love.</p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            ${genres.map((g,i) => `
+              <button onclick="quickSearch('${g.q}')" class="glass rounded-2xl p-6 text-center book-card animate-fade-in hover:bg-gold-500/10 transition" style="animation-delay:${i*30}ms">
+                <div class="text-4xl mb-3">${g.emoji}</div>
+                <div class="font-medium text-sm">${g.name}</div>
+              </button>
+            `).join('')}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderClassics() {
+      const cats = [
+        { name: 'English Classics', q: 'english classics' },
+        { name: 'Russian Classics', q: 'russian classics' },
+        { name: 'French Classics', q: 'french classics' },
+        { name: 'American Classics', q: 'american classics' },
+        { name: 'Japanese Classics', q: 'japanese literature classics' },
+        { name: 'Arabic Classics', q: 'arabic literature' },
+        { name: 'Chinese Classics', q: 'chinese classics' },
+        { name: 'European Classics', q: 'european classics' }
+      ];
+      return `
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <h1 class="font-display text-4xl font-bold mb-2 text-center">${t('world_classics')}</h1>
+          <p class="text-center opacity-70 mb-10">Timeless works that shaped cultures across the globe.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+            ${cats.map((c,i) => `
+              <button onclick="quickSearch('${c.q}')" class="glass rounded-2xl p-6 text-left book-card animate-fade-in hover:border-gold-500/30 transition" style="animation-delay:${i*40}ms">
+                <h3 class="font-semibold text-lg text-gold-500 mb-1">${c.name}</h3>
+                <p class="text-sm opacity-60">Explore collection →</p>
+              </button>
+            `).join('')}
+          </div>
+          <div id="classicsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            ${skeletonCards(12)}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderFavorites() {
+      if (!state.favorites.length) {
+        return `
+          <section class="max-w-3xl mx-auto px-4 py-24 text-center">
+            <div class="text-6xl mb-6">📚</div>
+            <h1 class="font-display text-3xl font-bold mb-3">${t('favorites')}</h1>
+            <p class="opacity-70 mb-8">Your personal library is empty. Start adding books you love!</p>
+            <button onclick="navigate('books')" class="px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-900 font-semibold transition">Browse Books</button>
+          </section>
+        `;
+      }
+      return `
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <h1 class="font-display text-4xl font-bold mb-2">${t('favorites')}</h1>
+          <p class="opacity-70 mb-8">${state.favorites.length} books in your library</p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            ${state.favorites.map((f,i) => `
+              <div class="book-card glass rounded-2xl overflow-hidden animate-fade-in" style="animation-delay:${i*40}ms">
+                <div class="aspect-[2/3] bg-navy-800">
+                  <img src="${f.cover}" alt="${f.title}" class="w-full h-full object-cover" />
+                </div>
+                <div class="p-3">
+                  <h3 class="font-semibold text-sm line-clamp-2 mb-1">${f.title}</h3>
+                  <p class="text-xs opacity-70 mb-2">${f.author}</p>
+                  <button onclick='toggleFavorite({key:"${f.key}",title:"${f.title}"})' class="text-xs text-red-400 hover:underline">Remove</button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderAbout() {
+      return `
+        <section class="max-w-3xl mx-auto px-4 py-16">
+          <h1 class="font-display text-4xl font-bold mb-6 text-center">${t('about')}</h1>
+          <div class="glass rounded-3xl p-8 md:p-12 space-y-6 text-center">
+            <p class="text-lg leading-relaxed opacity-90">${t('about_text')}</p>
+            <p class="opacity-70">We use open data from Open Library and other public catalogs. We never host or distribute copyrighted full texts. When a book is legally available online, we link to the official source.</p>
+            <div class="pt-6 border-t border-gold-500/20">
+              <p class="font-display text-2xl text-gold-500 mb-2">One World. Millions of Stories.</p>
+              <p class="text-sm opacity-60">Built with ❤️ for readers everywhere.</p>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderExplore() {
+      return renderHome().replace('hero-bg', 'hero-bg') + `
+        <section class="max-w-7xl mx-auto px-4 py-8">
+          <h2 class="font-display text-2xl font-bold mb-6 text-center">Quick Discover</h2>
+          <div class="flex flex-wrap justify-center gap-3">
+            ${['time travel','space opera','forbidden love','detective','coming of age','dystopia','magical realism','historical fiction'].map(q => `
+              <button onclick="quickSearch('${q}')" class="px-5 py-2 rounded-full glass hover:bg-gold-500/20 transition text-sm">${q}</button>
+            `).join('')}
+          </div>
+        </section>
+      `;
+    }
+
+    // ==================== NAVIGATION & RENDER ====================
+    function navigate(page) {
+      state.page = page;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      render();
+      // Load data for specific pages
+      if (page === 'home' || page === 'explore') {
+        loadHomeBooks();
+      } else if (page === 'books') {
+        if (!state.books.length && !state.query) {
+          state.query = 'fiction';
+          doSearchFromBooks();
+        }
+      } else if (page === 'classics') {
+        loadClassics();
+      }
+    }
+
+    function render() {
+      const app = document.getElementById('app');
+      let html = '';
+      switch (state.page) {
+        case 'home': html = renderHome(); break;
+        case 'explore': html = renderExplore(); break;
+        case 'books': html = renderBooks(); break;
+        case 'authors': html = renderAuthors(); break;
+        case 'genres': html = renderGenres(); break;
+        case 'classics': html = renderClassics(); break;
+        case 'favorites': html = renderFavorites(); break;
+        case 'about': html = renderAbout(); break;
+        default: html = renderHome();
+      }
+      app.innerHTML = html;
+      // Highlight nav
+      document.querySelectorAll('.nav-link').forEach(el => {
+        el.classList.toggle('text-gold-500', el.dataset.page === state.page);
+      });
+    }
+
+    // ==================== SEARCH ACTIONS ====================
+    let searchTimeout;
+    function doSearch() {
+      const input = document.getElementById('searchInput');
+      const q = (input && input.value) || state.query || '';
+      state.query = q.trim();
+      state.page = 'books';
+      state.pageNum = 1;
+      render();
+      searchAndShow();
+    }
+    function doSearchFromBooks() {
+      state.pageNum = 1;
+      searchAndShow();
+    }
+    async function searchAndShow() {
+      const grid = document.getElementById('booksGrid');
+      if (grid) grid.innerHTML = skeletonCards(12);
+      const data = await searchBooks(state.query, state.pageNum);
+      if (grid) {
+        grid.innerHTML = data.docs.length
+          ? data.docs.map((b,i) => bookCard(b,i)).join('')
+          : `<div class="col-span-full text-center py-20 opacity-60">${t('no_results')}</div>`;
+      }
+      const count = document.getElementById('resultCount');
+      if (count) count.textContent = (data.numFound || 0).toLocaleString();
+    }
+    function quickSearch(q) {
+      state.query = q;
+      state.page = 'books';
+      state.pageNum = 1;
+      render();
+      searchAndShow();
+    }
+    function applyFilters() {
+      const genre = document.getElementById('filterGenre')?.value || '';
+      const lang = document.getElementById('filterLang')?.value || '';
+      const yFrom = document.getElementById('filterYearFrom')?.value || '';
+      const yTo = document.getElementById('filterYearTo')?.value || '';
+      state.filters = { genre, language: lang, yearFrom: yFrom, yearTo: yTo };
+      let q = state.query || '*';
+      if (genre) q += ` subject:${genre}`;
+      state.query = q;
+      searchAndShow();
+    }
+    function clearFilters() {
+      state.filters = { genre: '', language: '', yearFrom: '', yearTo: '', sort: 'relevance' };
+      state.query = '';
+      document.getElementById('filterGenre').value = '';
+      document.getElementById('filterLang').value = '';
+      document.getElementById('filterYearFrom').value = '';
+      document.getElementById('filterYearTo').value = '';
+      searchAndShow();
+    }
+    async function loadMore(page) {
+      if (page < 1) return;
+      state.pageNum = page;
+      await searchAndShow();
+      window.scrollTo({ top: 200, behavior: 'smooth' });
+    }
+
+    async function loadHomeBooks() {
+      // Trending
+      const trend = await searchBooks('bestseller OR popular', 1);
+      const tEl = document.getElementById('trendingBooks');
+      if (tEl) tEl.innerHTML = (trend.docs || []).slice(0,6).map((b,i) => bookCard(b,i)).join('') || skeletonCards(6);
+
+      // Classics
+      const clas = await searchBooks('classic literature', 1);
+      const cEl = document.getElementById('classicBooks');
+      if (cEl) cEl.innerHTML = (clas.docs || []).slice(0,6).map((b,i) => bookCard(b,i)).join('') || skeletonCards(6);
+    }
+
+    async function loadClassics() {
+      const data = await searchBooks('world classics OR classic literature', 1);
+      const el = document.getElementById('classicsGrid');
+      if (el) el.innerHTML = (data.docs || []).slice(0,18).map((b,i) => bookCard(b,i)).join('') || `<div class="col-span-full text-center py-12 opacity-60">${t('no_results')}</div>`;
+    }
+
+    function doDiscover() {
+      const genre = document.getElementById('discGenre')?.value || '';
+      const mood = document.getElementById('discMood')?.value || '';
+      const lang = document.getElementById('discLang')?.value || '';
+      let q = '';
+      if (genre) q += genre + ' ';
+      if (mood) q += mood + ' ';
+      if (!q) q = 'fiction';
+      state.query = q.trim();
+      if (lang) state.filters.language = lang;
+      navigate('books');
+      searchAndShow();
+    }
+
+    // ==================== BOOK MODAL ====================
+    async function openBookModal(book) {
+      state.currentBook = book;
+      const modal = document.getElementById('bookModal');
+      const content = document.getElementById('bookModalContent');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      content.innerHTML = `<div class="text-center py-12"><div class="inline-block w-10 h-10 border-2 border-gold-500 border-t-transparent rounded-full animate-spin"></div><p class="mt-4 opacity-70">${t('loading')}</p></div>`;
+
+      const cover = getCover(book, 'L');
+      const author = book.author_name ? book.author_name.join(', ') : 'Unknown';
+      const year = book.first_publish_year || '—';
+      const subjects = (book.subject || []).slice(0, 8).join(', ') || '—';
+      const isbn = (book.isbn && book.isbn[0]) || '—';
+      const pages = book.number_of_pages_median || book.number_of_pages || '—';
+      const lang = (book.language || []).join(', ') || '—';
+      const rating = book.ratings_average ? book.ratings_average.toFixed(1) : '—';
+      const fav = isFavorite(book.key);
+      const olLink = `https://openlibrary.org${book.key}`;
+      const hasEbook = book.ebook_access === 'public' || book.has_fulltext;
+
+      content.innerHTML = `
+        <div class="flex flex-col md:flex-row gap-8">
+          <div class="flex-shrink-0 mx-auto md:mx-0">
+            <img src="${cover}" alt="${book.title}" class="w-48 md:w-56 rounded-xl shadow-card object-cover" onerror="this.src='https://covers.openlibrary.org/b/id/1093-L.jpg'" />
+          </div>
+          <div class="flex-1">
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-2">${book.title}</h2>
+            <p class="text-lg opacity-80 mb-4">${author}</p>
+            <div class="flex items-center gap-3 mb-4 text-sm">
+              <span>${stars(book.ratings_average || 0)} ${rating}</span>
+              <span class="opacity-50">·</span>
+              <span class="opacity-70">${year}</span>
+            </div>
+            <div class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm mb-6 opacity-80">
+              <div><span class="opacity-50">ISBN:</span> ${isbn}</div>
+              <div><span class="opacity-50">Pages:</span> ${pages}</div>
+              <div><span class="opacity-50">Language:</span> ${lang}</div>
+              <div><span class="opacity-50">Subjects:</span> <span class="line-clamp-1">${subjects}</span></div>
+            </div>
+            <div class="flex flex-wrap gap-3 mb-6">
+              ${hasEbook ? `<a href="${olLink}" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-900 font-semibold text-sm transition">${t('read_online')}</a>` : ''}
+              <a href="${olLink}" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-xl glass hover:bg-gold-500/20 text-sm font-medium transition">${t('official')}</a>
+              <button id="modalFavBtn" onclick='toggleFavorite(${JSON.stringify(book).replace(/'/g, "&#39;")})' class="px-5 py-2.5 rounded-xl glass hover:bg-gold-500/20 text-sm font-medium transition">
+                ${fav ? '❤️ ' + t('remove_fav') : '🤍 ' + t('add_fav')}
+              </button>
+              <button onclick="navigator.share ? navigator.share({title: '${book.title.replace(/'/g,"\\'")}', url: '${olLink}'}) : copyLink('${olLink}')" class="px-5 py-2.5 rounded-xl glass hover:bg-gold-500/20 text-sm font-medium transition">Share</button>
+            </div>
+            <p class="text-sm opacity-70 leading-relaxed line-clamp-6">${book.first_sentence ? (Array.isArray(book.first_sentence) ? book.first_sentence[0] : book.first_sentence) : 'No description available. Visit the official source for more information about this book.'}</p>
+          </div>
+        </div>
+      `;
+    }
+    function closeBookModal() {
+      document.getElementById('bookModal').classList.add('hidden');
+      document.getElementById('bookModal').classList.remove('flex');
+    }
+    function copyLink(url) {
+      navigator.clipboard.writeText(url);
+      showToast('Link copied!');
+    }
+
+    // ==================== TOAST ====================
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.remove('hidden');
+      setTimeout(() => t.classList.add('hidden'), 2500);
+    }
+
+    // ==================== MOBILE ====================
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    }
+
+    // ==================== INIT ====================
+    document.addEventListener('DOMContentLoaded', () => {
+      applyTheme();
+      document.getElementById('langFlag').textContent = langFlags[state.lang] || '🌐';
+      if (state.lang === 'ar') document.documentElement.dir = 'rtl';
+      updateFavBadge();
+      navigate('home');
+
+      // Close menus on outside click
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('#langMenu') && !e.target.closest('[onclick*="toggleLangMenu"]')) {
+          document.getElementById('langMenu').classList.add('hidden');
+        }
+      });
+
+      // Close modal on backdrop
+      document.getElementById('bookModal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('bookModal')) closeBookModal();
+      });
+
+      // Keyboard
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeBookModal();
+      });
+    });
+  </script>
+</body>
+</html>
